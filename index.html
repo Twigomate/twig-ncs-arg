@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TWIG x NCS x ARG – Countdown</title>
+  <style>
+    :root { --bg:#0d1117; --fg:#e6edf3; --sub:#a9b1ba; }
+    html,body{height:100%}
+    body{
+      margin:0; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:16px; background:var(--bg); color:var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      text-align:center; padding:24px;
+    }
+    h1{ font-weight:700; margin:0; }
+    #countdown{ font-size:clamp(28px,8vw,64px); font-weight:800; letter-spacing:1px; }
+    .sub{ color:var(--sub); font-size:14px }
+  </style>
+</head>
+<body>
+  <h1>Et spil begynder, når tiden rinder ud …</h1>
+  <div id="countdown">—</div>
+  <div class="sub">TWIG × NCS × ARG</div>
+
+  <script>
+    // Mål: 4/10-2025 kl. 04:00 i brugerens lokale tidszone (Danmark for dig)
+    const target = new Date(2025, 9, 4, 4, 0, 0, 0).getTime(); // måned er 0-indekseret (9 = oktober)
+
+    const el = document.getElementById("countdown");
+    const tick = setInterval(() => {
+      const now = Date.now();
+      const dist = target - now;
+
+      if (dist <= 0) {
+        clearInterval(tick);
+        el.textContent = "Tiden er gået!";
+        return;
+      }
+      const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+      const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((dist % (1000 * 60)) / 1000);
+      el.textContent = `${d}d ${h}t ${m}m ${s}s`;
+    }, 1000);
+  </script>
+</body>
+</html>

@@ -24,8 +24,9 @@
   <div class="sub">TWIG × NCS × ARG</div>
 
   <script>
-    // Mål: 4/10-2025 kl. 04:00 i brugerens lokale tidszone (Danmark for dig)
-    const target = new Date(2025, 9, 4, 4, 0, 0, 0).getTime(); // måned er 0-indekseret (9 = oktober)
+    // Mål: 4. oktober 2025 kl. 07:00 (lokal tid)
+    const target = new Date(2025, 9, 4, 7, 0, 0, 0).getTime(); 
+    // (Måneder er 0-indekseret: 9 = oktober)
 
     const el = document.getElementById("countdown");
     const tick = setInterval(() => {

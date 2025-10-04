@@ -1,129 +1,13 @@
-<!DOCTYPE html>
-<html lang="da">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TWIG x NCS x ARG – Countdown</title>
-  <style>
-    :root { --bg:#0d1117; --fg:#e6edf3; --sub:#a9b1ba; }
-
-    html, body { height:100%; }
-    body{
-      margin:0; background:var(--bg); color:var(--fg);
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      text-align:center;
-    }
-
-    /* HERO (countdown) – 8510 */
-    .hero{
-      min-height:100svh; /* mobil-safe 100vh */
-      display:grid; place-items:center;
-      padding:24px;
-    }
-    .hero-inner{ display:flex; flex-direction:column; gap:12px; align-items:center; }
-
-    h1{ font-weight:700; margin:0; font-size:clamp(18px,4vw,28px); }
-    #countdown{
-      font-size:clamp(28px,8vw,64px);
-      font-weight:800; letter-spacing:1px;
-    }
-    .sub{ color:var(--sub); font-size:14px }
-
-    /* SPONSOR-SEKTION - hvis du læser dette så check dem */
-    section.sponsors-wrap{
-      padding:24px 20px 48px;
-      max-width:1100px; margin:0 auto;
-    }
-    section.sponsors-wrap h2{
-      margin:0 0 16px; font-size:clamp(18px,3.2vw,24px); font-weight:700;
-    }
-    .sponsors{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap:16px;
-      align-items:stretch;
-    }
-    .sponsor{
-      display:flex; flex-direction:column; align-items:center; gap:8px;
-      text-decoration:none; color:var(--fg);
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:14px; padding:14px;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .sponsor:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); }
-
-    /* Logoer autoskalerer uden at blive strukket */
-    .sponsor img{
-      max-width:100%;
-      height:auto;           /* <— vigtig i forhold til koding ingen hints her*/
-      max-height:90px;       /* begræns højde så kort holdes kompakt */
-      object-fit:contain;
-      image-rendering:auto;
-    }
-    .sponsor p{ margin:0; font-weight:600; font-size:14px; }
-  </style>
-</head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Et spil begynder, når tiden rinder ud …</h1>
-      <div id="countdown"></div>
-      <div class="sub">TWIG × NCS × ARG</div>
-    </div>
-  </section>
+  <h1>Tillykke 🎉</h1>
+ <!-- Skjult hint: Hvis man ser dette så er braille det kodeord du skal sige til mig til NCS -->
 
-  <!-- SPONSORER (nedenfor – kan scrolles til) -->
-  <section class="sponsors-wrap">
-    <h2>Sponsorer (kig gerne forbi og støt dem!)</h2>
 
-    <div class="sponsors">
-      <a class="sponsor" href="https://www.hanadacards.dk" target="_blank" rel="noopener">
-        <img src="images/HanadaCards.webp" alt="Hanadacards logo" loading="lazy" decoding="async">
-        <p><strong>Hanadacards</strong></p>
-      </a>
+  <h2>Det her ser vigtigt ud:</h2>
+  <div class="braille">    ⠓ ⠁ ⠗ ⠲⠀⠙ ⠥⠀⠑ ⠝⠀⠛ ⠁ ⠗ ⠙ ⠑ ⠧ ⠕ ⠊ ⠗⠀⠞ ⠊ ⠇⠀⠍ ⠊ ⠛
+</div>
 
-      <a class="sponsor" href="https://www.blazes.dk" target="_blank" rel="noopener">
-        <img src="images/Blazes.png" alt="Blazes logo" loading="lazy" decoding="async">
-        <p><strong>Blazes</strong></p>
-      </a>
-
-      <a class="sponsor" href="https://www.pokedeal.dk" target="_blank" rel="noopener">
-        <img src="images/Pokedeal.avif" alt="Pokedeal logo" loading="lazy" decoding="async">
-        <p><strong>PokeDeal</strong></p>
-      </a>
-
-      <a class="sponsor" href="https://www.andishop.dk" target="_blank" rel="noopener">
-        <img src="images/andishop.png" alt="Andishop logo" loading="lazy" decoding="async">
-        <p><strong>Andishop</strong></p>
-      </a>
-    </div>
-  </section>
-
-  <script>
-    // Mål: 4. oktober 2025 kl. 07:00 (lokal tid)
-    const target = new Date(2025, 9, 4, 7, 0, 0).getTime(); // måned 9 = oktober
-
-    const el = document.getElementById("countdown");
-    const tick = setInterval(() => {
-      const now = Date.now();
-      const dist = target - now;
-
-      if (dist <= 0) {
-        clearInterval(tick);
-        el.textContent = "Cheater! kigger bare i koden, har jeg tænkt over bare rolig. Vente du må";
-        return;
-      }
-
-      const d = Math.floor(dist / (1000 * 60 * 60 * 24));
-      const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((dist % (1000 * 60)) / 1000);
-      el.textContent = `${d}d ${h}t ${m}m ${s}s`;
-    }, 1000);
-  </script>
 </body>
 </html>
 
